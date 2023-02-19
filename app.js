@@ -14,10 +14,12 @@ const { getDockerDetails } = require('./src/docker');
 const monitor = require('./src/monitor');
 const { getAvailableConnections, getAllWifiInfo, getWifiInterfaces, getWifiAciveConnections } = require('./src/wifi');
 
-const app = express()
-const port = 2916
+const app = express();
+const port = 2916;
 
 monitor();
+
+app.use(cors());
 
 //Most add routes
 app.get('/', async (req, res) => {
