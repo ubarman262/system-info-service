@@ -13,6 +13,7 @@ const { getAllData } = require('systeminformation');
 const { getDockerDetails } = require('./src/docker');
 const monitor = require('./src/monitor');
 const { getAvailableConnections, getAllWifiInfo, getWifiInterfaces, getWifiAciveConnections } = require('./src/wifi');
+const cors = require('cors');
 
 const app = express();
 const port = 2916;
