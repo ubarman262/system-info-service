@@ -19,6 +19,7 @@ const port = 2916
 
 monitor();
 
+//Most add routes
 app.get('/', async (req, res) => {
     res.send(await getAllData())
 });
