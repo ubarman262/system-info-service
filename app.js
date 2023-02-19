@@ -12,6 +12,7 @@ const { getSiteStatus } = require('./src/checkSite');
 const { getAllData } = require('systeminformation');
 const { getDockerDetails } = require('./src/docker');
 const monitor = require('./src/monitor');
+const { getAvailableConnections, getAllWifiInfo, getWifiInterfaces, getWifiAciveConnections } = require('./src/wifi');
 
 const app = express()
 const port = 2916
@@ -77,7 +78,6 @@ app.get('/os', async (req, res) => {
     res.send(await getOSDetails());
 });
 
-
 app.get('/system', async (req, res) => {
     res.send(await getSystemDetails());
 });
@@ -85,6 +85,23 @@ app.get('/system', async (req, res) => {
 app.get('/users', async (req, res) => {
     res.send(await getUsersDetails());
 });
+
+app.get('/wifi', async (req, res) => {
+    res.send(await getAllWifiInfo());
+});
+
+app.get('/wifi/active', async (req, res) => {
+    res.send(await getWifiAciveConnections());
+});
+
+app.get('/wifi/available', async (req, res) => {
+    res.send(await getAvailableConnections());
+});
+
+app.get('/wifi/interface', async (req, res) => {
+    res.send(await getWifiInterfaces());
+});
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

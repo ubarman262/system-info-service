@@ -1,25 +1,38 @@
 const si = require('systeminformation');
 
-const getWifiNetworks = async () => {
-    return si.wifiNetworks()
+const getAvailableConnections = async () => {
+    const available = await si.wifiNetworks()
         .then(data => data)
         .catch(error => console.error(error));
+    return available.sort((a, b) => b.signalLevel - a.signalLevel);
 }
 
 const getWifiInterfaces = async () => {
-    return si.wifiNetworks()
+    return si.wifiInterfaces()
         .then(data => data)
         .catch(error => console.error(error));
 }
 
-const getWifiConnections = async () => {
-    return si.wifiNetworks()
+const getWifiAciveConnections = async () => {
+    return si.wifiConnections()
         .then(data => data)
         .catch(error => console.error(error));
+}
+
+const getAllWifiInfo = async () => {
+    const active = await getWifiAciveConnections();
+    const available = await getAvailableConnections();
+    const interface = await getWifiInterfaces();
+    const info = [];
+    info.push({ active: [...active] });
+    info.push({ available: [...available] });
+    info.push({ interface: [...interface] });
+    return info;
 }
 
 module.exports = {
-    getWifiNetworks,
+    getAvailableConnections,
     getWifiInterfaces,
-    getWifiConnections
+    getWifiAciveConnections,
+    getAllWifiInfo
 }

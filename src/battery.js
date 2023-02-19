@@ -24,7 +24,7 @@ const monitorBatteryCharging = async () => {
                 messageSentPo = true;
                 messageSentNe = false;
                 criticalMessage = false;
-            } else if (!battery.acConnected && battery.percent < 95 && !criticalMessage) {
+            } else if (!battery.acConnected && battery.percent < 25 && !criticalMessage) {
                 sendMsgWithImgToBot("Battery level critical!", "power_critical.gif");
                 criticalMessage = true;
             }
