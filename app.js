@@ -50,9 +50,6 @@ app.get('/disk', async (req, res) => {
 app.get('/disk/layout', async (req, res) => {
     res.send(await getDiskLayout());
 });
-app.get('/disk/layout', async (req, res) => {
-    res.send(await getDiskLayout());
-});
 
 app.get('/disk/space', async (req, res) => {
     res.send(await getDiskSpace());
